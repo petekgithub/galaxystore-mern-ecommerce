@@ -42,5 +42,3 @@ const admin = (req, res, next) => {
 
 export { protect, admin }
 
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTA3NGQzYjdlNWNiNjNiNjRjMjdmNiIsImlhdCI6MTY0MjQ1NTAwNiwiZXhwIjoxNjQ1MDQ3MDA2fQ.1RVa1gdidyiJsdrs2-h65yYE4yBb8SIj5zTB03IgOtg
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTA3NGQzYjdlNWNiNjNiNjRjMjdmNiIsImlhdCI6MTY0MjQ1NTAwNiwiZXhwIjoxNjQ1MDQ3MDA2fQ.1RVa1gdidyiJsdrs2-h65yYE4yBb8SIj5zTB03IgOtg
