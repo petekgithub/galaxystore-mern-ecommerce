@@ -44,7 +44,6 @@ const ProductListScreen = () => {
     useEffect(() => {
         dispatch({ type: PRODUCT_CREATE_RESET })
          
-        
         if(!userInfo.isAdmin) {
             navigate('/login')
         } 
@@ -53,7 +52,7 @@ const ProductListScreen = () => {
         } else {
             dispatch(listProducts())
         }
-    }, [dispatch, userInfo, successDelete, successCreate, createProduct]) 
+    }, [dispatch, userInfo, successDelete, successCreate, createdProduct]) 
 
 
     const deleteHandler = (id) => {
