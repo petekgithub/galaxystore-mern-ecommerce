@@ -5,10 +5,12 @@ import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import Meta from '../components/Meta'
 import { useParams } from 'react-router-dom'
 import { listProductDetails, createProductReview } from '../actions/productActions';
 import { useNavigate } from "react-router-dom";
 import {PRODUCT_CREATE_REVIEW_RESET} from '../constants/productConstants'
+
 
 
 const ProductScreen = ({ }) => {
@@ -66,11 +68,12 @@ const ProductScreen = ({ }) => {
         {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message>
          : (
              <>
+             <Meta title={product.name} />
             <Row>
-                <Col md={6}>
+                <Col className='product-page-section' md={6}>
                     <Image src={product.image} alt={product.name} fluid />
                 </Col>
-                <Col md={3}>
+                <Col className='product-page-section' md={3}>
                     <ListGroup variant='flush'>
                         <ListGroup.Item>
                             <h3>{product.name}</h3>
@@ -89,15 +92,15 @@ const ProductScreen = ({ }) => {
                         </ListGroup.Item>
                     </ListGroup>
                 </Col>
-                <Col md={3}>
+                <Col className='product-page-section' md={3}>
                     <Card>
                         <ListGroup variant='flush'>
                             <ListGroup.Item>
                                 <Row>
-                                    <Col>
+                                    <Col className='product-page-section'>
                                         Price:
                                     </Col>
-                                    <Col>
+                                    <Col className='product-page-section'>
                                         <strong>{product.price}€</strong>
                                     </Col>
                                 </Row>
@@ -105,10 +108,10 @@ const ProductScreen = ({ }) => {
 
                             <ListGroup.Item>
                                 <Row>
-                                    <Col>
+                                    <Col className='product-page-section'>
                                         Status:
                                     </Col>
-                                    <Col>
+                                    <Col className='product-page-section'>
                                         {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
                                     </Col>
                                 </Row>
@@ -117,8 +120,8 @@ const ProductScreen = ({ }) => {
                             {product.countInStock > 0 && ( 
                                 <ListGroup.Item>
                                     <Row>
-                                        <Col>Qty</Col>
-                                        <Col>
+                                        <Col className='product-page-section'>Qty</Col>
+                                        <Col className='product-page-section'>
                                             <Form.Control as='select' value={qty} onChange={(e) => setQty(e.target.value)}>
                                                 {[...Array(product.countInStock).keys()].map((x) => (
                                                     <option key={x + 1} value={x + 1}>
@@ -145,7 +148,7 @@ const ProductScreen = ({ }) => {
                 </Col>
             </Row>
             <Row>
-                <Col md={6}>
+                <Col className='product-page-section' md={6}>
                     <h2>Reviews</h2>
                     {product.reviews.length === 0 && <Message>No Reviews</Message>}
                     <ListGroup variant='flush'>

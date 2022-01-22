@@ -4,6 +4,7 @@ import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import Paginate from '../components/Paginate'
 import { 
     listProducts, 
     deleteProduct,
@@ -11,15 +12,22 @@ import {
 } from '../actions/productActions'
 import { useNavigate } from 'react-router-dom';
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
+import { useParams } from 'react-router-dom';
 
 
 
 const ProductListScreen = () => {
+
+    const params = useParams();
+
+    const pageNumber = params.pageNumber || 1;
+
+
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
     const productList = useSelector(state => state.productList)
-    const { loading, error, products } = productList
+    const { loading, error, products, page, pages } = productList
 
     const productDelete = useSelector(state => state.productDelete)
     const { 
@@ -50,9 +58,9 @@ const ProductListScreen = () => {
         if( successCreate) {
             navigate(`/admin/product/${createdProduct._id}/edit`)
         } else {
-            dispatch(listProducts())
+            dispatch(listProducts('', pageNumber)) 
         }
-    }, [dispatch, userInfo, successDelete, successCreate, createdProduct]) 
+    }, [dispatch, userInfo, successDelete, successCreate, createdProduct, pageNumber]) 
 
 
     const deleteHandler = (id) => {
@@ -89,6 +97,7 @@ const ProductListScreen = () => {
         
         {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message>
         : (
+            <>
             <Table striped bordered hover responsive className='table-sm'>
                 <thead>
                     <tr>
@@ -126,6 +135,8 @@ const ProductListScreen = () => {
                     ))}
                 </tbody>
             </Table>
+            <Paginate pages={pages} page={page} isAdmin={true} />
+            </>
         )}
         </>
     )
