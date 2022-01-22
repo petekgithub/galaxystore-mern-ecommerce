@@ -23,8 +23,8 @@ const SearchBox = ({}) => {
   return (
     <Form 
         onSubmit={submitHandler} 
-        //className='d-flex'
-        inline
+        className='d-flex'
+        //inline
         >
         <Form.Control 
             type='text' 
