@@ -143,6 +143,36 @@ const createProductReview = asyncHandler(async(req, res) => {
     })
 
 
+        // delete review
+    // delete api/products/:id/reviews
+    //private
+    const deleteProductReview = asyncHandler(async(req,res) =>{
+     
+        const product = await Product.findById(req.params.id);
+         
+        if(product)
+        {
+            const reviews = product.reviews.filter(review => review.user.toString() !== req.user.id.toString());
+         
+            const rating = product.reviews.reduce((acc,item) => item.rating +acc,0) / product.reviews.length//update the rating
+            
+            const numReviews = product.reviews.length//update num
+            
+            await Product.findByIdAndUpdate(req.params.id,{
+                reviews,
+                rating,
+                numReviews
+            })
+            res.status(201).json({message:'Review Deleted'})
+        }
+        else{
+            res.status(401)
+            throw new Error('No Product found')
+        }
+         
+        })
+        
+
 
 // @desc Get top rated products
 // @route GET /api/products/top

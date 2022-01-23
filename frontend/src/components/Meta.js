@@ -15,9 +15,9 @@ const Meta = ({ title, description, keywords}) => {
 };
 
 Meta.defaultProps = {
-    title:  'Welcome to GalaxyShop',
-    description: 'We sell the best products for cheap',
-    keywords: 'electronics, buy electronics, cheap electronics' 
+    title:  'Welcome to FLYTOSKY',
+    description: 'We sell the products in the world',
+    keywords: 'drones, electronics, best price, best quality, video makes' 
 }
 
 export default Meta;
